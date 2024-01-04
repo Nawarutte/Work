@@ -1,0 +1,17 @@
+import numpy as np
+
+def run_prob(expts, n, k, p):
+    count = 0
+
+    for _ in range(expts):
+        sequence = np.random.choice([0, 1], size=n, p=[1-p, p])
+        run_lengths = [sum(1 for _ in group) for key, group in groupby(sequence) if key == 1]
+        if any(length >= k for length in run_lengths):
+            count += 1
+
+    probability = count / expts
+    return probability
+
+# Example usage:
+result = run_prob(expts=100000, n=100, k=5, p=0.5)
+print(result)
