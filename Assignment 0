@@ -1,0 +1,10 @@
+from itertools import groupby
+from collections import Counter
+
+def count_runs(sequence):
+    run_lengths = [sum(1 for _ in group) for key, group in groupby(sequence) if key == 1]
+    return Counter(run_lengths)
+
+# Example usage:
+result = count_runs([0, 1, 0, 1, 1, 0, 0, 0, 0, 1])
+print(result)
